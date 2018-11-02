@@ -2,6 +2,7 @@ import { PokemonService } from './pokemon-service/pokemon-service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {TableModule} from 'primeng/table';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -14,7 +15,8 @@ import { HttpModule } from '@angular/http';
   imports: [
     BrowserModule,
     TableModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     PokemonService

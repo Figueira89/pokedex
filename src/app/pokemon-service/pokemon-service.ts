@@ -1,20 +1,30 @@
-import { Pokemon } from './../core/model';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable, of } from 'rxjs';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 
-@Injectable({providedIn: 'root', })
+@Injectable({ providedIn: 'root', })
 export class PokemonService {
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) { }
 
+    endpoint = environment.myEnviroment + '/api/getAllMock';
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })
+    };
+
+    getAll(): Observable<any> {
+        const head = new Headers({ 'Content-Type': 'application/json' });
+        return this.http.get(this.endpoint, this.httpOptions).pipe(map(this.extractData));
     }
 
-    getAll(): Observable<Pokemon[]> {
-        return this.http.get(environment.myEnviroment + '/api/getAllMock').pipe(map(data => data.json() as Pokemon[]));
+    private extractData(res: Response) {
+        const body = res;
+        return body || {};
     }
 
 }

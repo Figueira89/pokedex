@@ -1,4 +1,4 @@
-import { Pokemon } from './core/model';
+import { Pokemon } from './core/pokemon';
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from './pokemon-service/pokemon-service';
 
@@ -14,16 +14,17 @@ export class AppComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(public pokemonService: PokemonService) { }
 
   ngOnInit() {
     this.getAllPokes();
   }
 
-  getAllPokes(): void {
-    this.pokemonService.getAll().subscribe(pokemons => {
-      this.pokemons = pokemons;
-      console.log(this.pokemons);
+  getAllPokes() {
+    this.pokemons = [];
+    this.pokemonService.getAll().subscribe((data: any) => {
+      console.log(data);
+      this.pokemons = data.pokemons;
     });
   }
 }
