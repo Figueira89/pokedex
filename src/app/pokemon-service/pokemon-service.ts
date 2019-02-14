@@ -10,7 +10,7 @@ export class PokemonService {
 
     constructor(private http: HttpClient) { }
 
-    endpoint = environment.myEnviroment + '/api/getAllMock';
+    endpoint = environment.myEnviroment + '/api/getAll';
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json'
