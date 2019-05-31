@@ -20,10 +20,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let pokemon of pokemons">
-                    <td><img src="{{pokemon.sprite}}"></td>
-                    <td> {{pokemon.id}} </td>
+                    <td><img src="{{pokemon.image}}"></td>
+                    <td> {{pokemon.number}} </td>
                     <td> {{pokemon.name | uppercase }} </td>
-                    <td> {{pokemon.type}} </td>
+                    <td> {{pokemon.types}} </td>
                 </tr>
             </tbody>
         </table>
