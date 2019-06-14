@@ -14,10 +14,17 @@ export class AppComponent implements OnInit {
 
   cols: any[];
 
+  config: any;
+
   constructor(public pokemonService: PokemonService) { }
 
   ngOnInit() {
     this.getAllPokes();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1,
+      totalItems: this.pokemons.length
+    };
   }
 
   getAllPokes() {
@@ -26,5 +33,9 @@ export class AppComponent implements OnInit {
       console.log(data);
       this.pokemons = data;
     });
+  }
+
+  pageChanged(event) {
+    this.config.currentPage = event;
   }
 }
